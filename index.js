@@ -10,7 +10,12 @@ const PORT = process.env.PORT;
 
 app.use(express.json());
 app.use(cors({
-    origin: ["https://document-frontend-6m93-b07wog21s-nipun-sehrawat-projects.vercel.app", "https://document-frontend-6m93.vercel.app"],
+    origin: [
+        "https://document-frontend-ebon.vercel.app",
+        "https://document-frontend-b1881wmjg-nipun-sehrawat-projects.vercel.app",
+        "https://document-frontend-6m93-b07wog21s-nipun-sehrawat-projects.vercel.app",
+        "https://document-frontend-6m93.vercel.app"
+    ],
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'x-auth-token']
@@ -23,6 +28,9 @@ app.get('/' , (req,res)=>{
     res.send('Welcome to server');
 })
 
+app.get('/api/health', (req, res) => {
+    res.json({ status: 'ok' });
+});
 
 
 app.listen(PORT, async () => {
