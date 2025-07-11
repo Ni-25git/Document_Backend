@@ -25,11 +25,13 @@ app.get('/' , (req,res)=>{
 
 
 
-app.listen(PORT , async ()=>{
+app.listen(PORT, async () => {
     try {
         await connectDb();
-        console.log(`server is listening on PORT ${PORT} and db is connected with server`)
+        console.log(`Server is listening on PORT ${PORT} and database is connected successfully`);
     } catch (error) {
-        console.log('error in connecting db with server', error)
+        console.error('Failed to connect to database:', error.message);
+        console.error('Please check your MONGO_URL environment variable and network connection');
+        process.exit(1); // Exit the process if database connection fails
     }
-})
+});
